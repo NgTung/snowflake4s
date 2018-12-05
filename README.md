@@ -6,7 +6,9 @@ Snowflake4s can generate the roughly-sorted 64 bits ids as Long type. The name o
 ## Get Started
 You should add the following dependency.
 ```sbtshell
-libraryDependencies += "com.septech" %% "snowflake4s_2.12" % "0.0.1-ALPHA"
+resolvers += Resolver.bintrayRepo("ngtung", "snowflake4s")
+
+libraryDependencies += "septech.snowflake4s" % "snowflake4s_2.12" % "0.0.1"
 ```
 
 Add manual config to `application.conf`:

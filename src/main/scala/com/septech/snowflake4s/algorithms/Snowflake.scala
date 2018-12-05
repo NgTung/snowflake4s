@@ -38,11 +38,12 @@ import scala.util.Try
 @Singleton
 private[snowflake4s] class Snowflake @Inject()(identifier: MachineIdentifier) extends Generator {
   /**
-    *  This is a Custom Epoch, mean for reference time: October 18, 1989, 16:53:40 UTC -
-    *  The date of Galileo Spacecraft was launched to explored Jupiter and its moon from Kennedy Space Center, Florida, US.
+    * This is a Custom Epoch, mean for reference time: October 18, 1989, 16:53:40 UTC -
+    * The date of Galileo Spacecraft was launched to explored Jupiter and its moon from Kennedy Space Center, Florida, US.
     *
-    *  Galileo is also the name used for the satellite navigation system of the European Union.
-    *  It uses 22 August 1999 for Epoch instead of the Unix Epoch(January 1st, 1970).
+    * FYI:
+    * Galileo is also the name used for the satellite navigation system of the European Union.
+    * It uses 22 August 1999 for Epoch instead of the Unix Epoch(January 1st, 1970).
     */
   final val GALILEO_LAUNCHED_DATETIME: ZonedDateTime =
     LocalDateTime.of(1989, Month.OCTOBER, 18, 16, 53, 40).atZone(ZoneId.of("US/Eastern"))
@@ -84,7 +85,7 @@ private[snowflake4s] class Snowflake @Inject()(identifier: MachineIdentifier) ex
       (STARTING_SEQUENCE_NUMBERS to batch).foreach(_ => ids += nextId)
 
       ids.toList
-    }  match {
+    } match {
       case Success(ids) => ids
       case Failure(e) => throw new GenerateException(e.getMessage)
     }
@@ -104,7 +105,7 @@ private[snowflake4s] class Snowflake @Inject()(identifier: MachineIdentifier) ex
       if (sequence == 0) {
         currentTimestamp = nextMillis(lastTimestamp)
       }
-    } else{
+    } else {
       sequence = 0
     }
 
